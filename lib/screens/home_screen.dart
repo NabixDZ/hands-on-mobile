@@ -115,6 +115,7 @@ class HomeScreen extends StatelessWidget {
                 height: 15,
               ),
               GridView(
+                physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisExtent: 220,
@@ -139,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                       url: "assets/images/post2.png",
                       user_name: "@userName",
                     ),
-                    PostHome(
+                    PostHome2(
                       title: "Beach cleaning",
                       url: "assets/images/post.png",
                       user_name: "@userName",
@@ -182,27 +183,7 @@ class HomeScreen extends StatelessWidget {
          SizedBox(height: 150,),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 255, 42, 0),
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SvgPicture.asset(
-              "assets/images/home.svg",
-              color: Color.fromARGB(255, 255, 42, 0),
-            ),
-            SvgPicture.asset("assets/images/warning.svg"),
-            SvgPicture.asset("assets/images/calendarsearch.svg"),
-            SvgPicture.asset("assets/images/element4.svg"),
-            SvgPicture.asset("assets/images/map1.svg"),
-          ],
-        ),
-      ),
+      
     );
   }
 }

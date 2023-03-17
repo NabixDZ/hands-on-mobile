@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iwd23/screens/login_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -39,14 +40,32 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
-                  textAlign: TextAlign.center,
-                  "En continuant, j'accepte les conditions d'utilisation et la politique de confidentialite.",
-                  style: TextStyle(color: Colors.grey, fontSize: 16)),
+              // Text(
+              //     textAlign: TextAlign.center,
+              //     "By continuing, I agree to the terms of use and privacy policy.",
+              //     style: TextStyle(color: Colors.grey, fontSize: 12)),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: "By continuing, I agree to the ",
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'terms of use and privacy policy',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: Image.asset("images/googleicone.png", height: 24.0),
+                icon: Image.asset("images/googleicone-removebg-preview.png",
+                    height: 24.0),
                 label: Text('Continuer avec Google'),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.black,
@@ -61,7 +80,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      // Action à exécuter lorsque le bouton est cliqué
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => LoginScreen()));
                     },
                     child: Container(
                       width: 55.0,
@@ -118,7 +138,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               RichText(
                 text: TextSpan(
                   text: 'Vous avez déjà un compte ? ',

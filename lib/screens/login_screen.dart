@@ -1,6 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:iwd23/screens/signin_screen.dart';
+import 'package:iwd23/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(left: 30),
                   child: RichText(
                     textAlign: TextAlign.left,
-                    text: TextSpan(
+                    text: const TextSpan(
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -38,9 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 7),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                const SizedBox(height: 7),
+                const Padding(
+                  padding: EdgeInsets.only(left: 30),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -49,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: TextField(
@@ -59,13 +62,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red),
                       ),
                       fillColor: Colors.grey[100],
                       filled: true,
                       prefixIcon: IconButton(
-                        icon: Icon(Icons.mail),
+                        icon: const Icon(Icons.mail),
                         onPressed: () {
                           // action à effectuer lors du clic sur l'icône
                         },
@@ -83,13 +86,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red),
                       ),
                       fillColor: Colors.grey[100],
                       filled: true,
                       prefixIcon: IconButton(
-                        icon: Icon(Icons.password),
+                        icon: const Icon(Icons.password),
                         onPressed: () {
                           // action à effectuer lors du clic sur l'icône
                         },
@@ -107,8 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 143,
                     ),
                     const SizedBox(width: 11),
-                    Text(
-                      "OU",
+                    const Text(
+                      "OR",
                       style: TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(width: 11),
@@ -128,11 +131,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Action à exécuter lorsque le bouton est cliqué
                       },
                       child: Container(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(10),
                           width: 55.0,
                           height: 55.0,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 172, 167, 167),
+                              color: Colors.grey[100],
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(8.0)),
                           child: Image.asset(
@@ -144,13 +147,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Action à exécuter lorsque le bouton est cliqué
                       },
                       child: Container(
+                          padding: const EdgeInsets.all(5),
                           width: 55.0,
                           height: 55.0,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 172, 167, 167),
+                              color: Colors.grey[100],
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(8.0)),
-                          child: Image.asset("images/fbicone.png")),
+                          child: Image.asset(
+                              "images/fbicone-removebg-preview.png")),
                     ),
                     const SizedBox(width: 10),
                     InkWell(
@@ -158,43 +163,54 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Action à exécuter lorsque le bouton est cliqué
                       },
                       child: Container(
+                          padding: const EdgeInsets.all(5),
                           width: 56.0,
                           height: 56.0,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 172, 167, 167),
+                            color: Colors.grey[100],
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          child: Image.asset('images/appleicone.png')),
+                          child: Image.asset(
+                              'images/appleicone-removebg-preview.png')),
                     ),
                   ],
                 ),
                 const SizedBox(height: 70),
                 TextButton(
-                  onPressed: () {},
-                  child: Text("Commencez"),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => HomeScreen()));
+                  },
+                  child: const Text("Continue"),
                   style: TextButton.styleFrom(
-                      fixedSize: Size(200, 50),
+                      fixedSize: const Size(300, 50),
                       primary: Colors.white,
                       backgroundColor: Colors.red,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0))),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(
-                    text: 'Vous n\'avez pas de compte ? ',
-                    style: TextStyle(
+                    text: 'Don\'t have an account ? ',
+                    style: const TextStyle(
                       color: Colors.black,
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Enregistrez vous',
-                        style: TextStyle(
-                          color: Colors.orange,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                          text: 'Register now',
+                          style: const TextStyle(
+                            color: Colors.red,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const SigninScreen()));
+                            }),
                     ],
                   ),
                 ),

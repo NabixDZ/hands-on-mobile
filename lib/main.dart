@@ -1,15 +1,15 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:iwd23/myProvider.dart';
-import 'package:iwd23/salah/di.dart';
-import 'package:iwd23/salah/viewmodels/login_viewmodel.dart';
-import 'package:iwd23/salah/viewmodels/register_viewmodel.dart';
-import 'package:iwd23/salah/viewmodels/user_viewmodel.dart';
-import 'package:iwd23/screens/Layout.dart';
-import 'package:iwd23/screens/home_screen.dart';
-import 'package:iwd23/screens/login_screen.dart';
-import 'package:iwd23/screens/pageView/p_view.dart';
+import 'myProvider.dart';
+import 'salah/di.dart';
+import 'salah/viewmodels/login_viewmodel.dart';
+import 'salah/viewmodels/register_viewmodel.dart';
+import 'salah/viewmodels/user_viewmodel.dart';
+import 'screens/Layout.dart';
+import 'screens/home_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/pageView/p_view.dart';
 import 'package:provider/provider.dart';
 
 void main() async{
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             //home: PostPage(),
             title: 'Flutter App',
             home:  userViewModel.authenticated
-                ? const  LayoutScreen()
+                ?  LayoutScreen()
                 : (userViewModel.showOnBoarding
                 ?  Page_View()
                 : const LoginScreen()

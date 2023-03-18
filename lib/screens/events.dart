@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iwd23/widgets/eventcard_widget.dart';
-import 'package:iwd23/widgets/recentEvent.dart';
+
+import '../widgets/recentEvent.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({super.key});
@@ -34,8 +34,7 @@ class EventPage extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
           ),
           SizedBox(height: 10),
-          EventCard(),
-          EventCard(),
+         
         ]),
       ])),
     );

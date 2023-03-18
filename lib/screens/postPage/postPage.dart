@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,10 +14,10 @@ class PostPage extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(15, 15, 0, 15),
+            padding: const EdgeInsets.fromLTRB(15, 15, 0, 15),
             height: 300,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/images/PostExample.png",),
                     fit: BoxFit.cover)),
@@ -30,25 +29,25 @@ class PostPage extends StatelessWidget {
               onTap: () {
                 
               },
-              child: Icon(Icons.arrow_back_ios,color: Colors.white,)),
+              child: const Icon(Icons.arrow_back_ios,color: Colors.white,)),
             Container(
               //padding: EdgeInsets.fromLTRB(7, 0, 0, 0),
               height: 20,width: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-              color: Color.fromARGB(255, 255, 42, 0).withOpacity(0.5),
+              color: const Color.fromARGB(255, 255, 42, 0).withOpacity(0.5),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              Icon(Icons.favorite,color:Color.fromARGB(255, 255, 42, 0),size: 15,),
-              Text("350",style: TextStyle(color: Colors.white,fontSize: 13),)
+              const Icon(Icons.favorite,color:Color.fromARGB(255, 255, 42, 0),size: 15,),
+              const Text("350",style: TextStyle(color: Colors.white,fontSize: 13),)
               
               ],),
             )
            ],),
           ),
-          SizedBox(height: 15,),
+          const SizedBox(height: 15,),
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
             child: Column(
@@ -56,26 +55,26 @@ class PostPage extends StatelessWidget {
               children: [
                 Row(children: [
                   Image.asset("assets/images/profile.png",height: 40,width: 40,),
-                  SizedBox(width: 5,),
-                  Text("Agency's name",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w500),)
+                  const SizedBox(width: 5,),
+                  const Text("Agency's name",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w500),)
                 ],),
-                SizedBox(height: 15,),
-                Text("Trip Title",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w500),),
-                SizedBox(height: 15,),
-                Text("Trip description, The trip description should be usefull and should not be more then lets say 100 word yes am writing a lot of word to see how 100 word will fit in the screen ok we still have a lot of word to write and now am asking my self if i should limit the description ...",
+                const SizedBox(height: 15,),
+                const Text("Trip Title",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w500),),
+                const SizedBox(height: 15,),
+                const Text("Trip description, The trip description should be usefull and should not be more then lets say 100 word yes am writing a lot of word to see how 100 word will fit in the screen ok we still have a lot of word to write and now am asking my self if i should limit the description ...",
                 style: TextStyle(fontSize: 15),
                 textAlign: TextAlign.left,
                 ),
-                SizedBox(height: 15,),
-                Text("Comments",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w500),),
+                const SizedBox(height: 15,),
+                const Text("Comments",style: TextStyle(fontSize: 23,fontWeight: FontWeight.w500),),
                Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: Color.fromARGB(255, 241, 245, 254),
+        color: const Color.fromARGB(255, 241, 245, 254),
         border: Border.all(color: Colors.black),
       ),
-      padding: EdgeInsets.all(5),
-      margin: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       width: 300,
       height: 44,
       child: TextField(

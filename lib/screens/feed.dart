@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/event.dart';
@@ -37,8 +36,8 @@ class Feed extends StatelessWidget {
           Align(
             alignment: Alignment.topRight,
             child: Image.asset("assets/images/profile.png",)),
-            SizedBox(height: 15,),
-            RichText(text: TextSpan(
+            const SizedBox(height: 15,),
+            RichText(text: const TextSpan(
               
               text: "Take a look at other people's",
               style: TextStyle(
@@ -54,7 +53,7 @@ class Feed extends StatelessWidget {
                       ),)
 
             ])),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             FutureBuilder(
                 future: getEvent(),
                 builder: (context, snapshot)  {
@@ -62,9 +61,9 @@ class Feed extends StatelessWidget {
                   List<Event>? events = snapshot.data;
                   if(events != null) {
                     return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisExtent: 300,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 0,
@@ -77,12 +76,12 @@ class Feed extends StatelessWidget {
                       );
 
                   }
-                   return Text('Error');
+                   return const Text('Error');
                   
                 }
               
                 else{
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
 

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatefulWidget {
+  const SearchBar({super.key});
+
   @override
   _SearchBarState createState() => _SearchBarState();
 }
 
 class _SearchBarState extends State<SearchBar> {
-  TextEditingController _searchController = TextEditingController();
-  bool _isSearching = true;
+  final TextEditingController _searchController = TextEditingController();
+  final bool _isSearching = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 241, 236, 233),
+          color: const Color.fromARGB(255, 241, 236, 233),
           borderRadius: BorderRadius.circular(100)),
       child: ListTile(
         leading: _isSearching
             ? IconButton(
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
                 onPressed: () {
                   // setState(() {
                   //   _isSearching = false;
@@ -27,7 +29,7 @@ class _SearchBarState extends State<SearchBar> {
                 },
               )
             : IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                   color: Color.fromARGB(255, 143, 138, 135),
                 ),
@@ -40,7 +42,7 @@ class _SearchBarState extends State<SearchBar> {
         title: _isSearching
             ? TextField(
                 controller: _searchController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Search',
                   border: InputBorder.none,
                 ),
@@ -48,7 +50,7 @@ class _SearchBarState extends State<SearchBar> {
                   // TODO: filtrer les résultats ici
                 },
               )
-            : Text('Search'),
+            : const Text('Search'),
         trailing: Container(
           child: Image.asset("assets/images/Filter.png"),
         ),

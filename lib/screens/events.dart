@@ -8,7 +8,7 @@ class EventPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Column(children: [
+      child: Column(children: const [
         RecentEvent(),
         RecentEvent(),
       ]),

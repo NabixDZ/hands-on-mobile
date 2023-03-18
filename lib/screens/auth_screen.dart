@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iwd23/screens/login_screen.dart';
 
@@ -22,7 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
               const SizedBox(height: 30),
               RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
+                text: const TextSpan(
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -46,7 +45,7 @@ class _AuthScreenState extends State<AuthScreen> {
               //     style: TextStyle(color: Colors.grey, fontSize: 12)),
               RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
+                text: const TextSpan(
                   text: "By continuing, you agree to the ",
                   style: TextStyle(
                     color: Colors.grey,
@@ -66,11 +65,10 @@ class _AuthScreenState extends State<AuthScreen> {
                 onPressed: () {},
                 icon: Image.asset("images/googleicone-removebg-preview.png",
                     height: 24.0),
-                label: Text('Continue with Google'),
+                label: const Text('Continue with Google'),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    fixedSize: Size(250, 47),
+                    foregroundColor: Colors.white, backgroundColor: Colors.black,
+                    fixedSize: const Size(250, 47),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0))),
               ),
@@ -81,16 +79,16 @@ class _AuthScreenState extends State<AuthScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                          MaterialPageRoute(builder: (_) => const LoginScreen()));
                     },
                     child: Container(
                       width: 55.0,
                       height: 55.0,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 172, 167, 167),
+                          color: const Color.fromARGB(255, 172, 167, 167),
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(8.0)),
-                      child: Icon(
+                      child: const Icon(
                         Icons.mail,
                         color: Colors.white,
                         size: 32.0,
@@ -106,10 +104,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       width: 55.0,
                       height: 55.0,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 172, 167, 167),
+                          color: const Color.fromARGB(255, 172, 167, 167),
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(8.0)),
-                      child: Icon(
+                      child: const Icon(
                         Icons.facebook,
                         color: Colors.white,
                         size: 32.0,
@@ -125,11 +123,11 @@ class _AuthScreenState extends State<AuthScreen> {
                       width: 56.0,
                       height: 56.0,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 172, 167, 167),
+                        color: const Color.fromARGB(255, 172, 167, 167),
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.apple,
                         color: Colors.white,
                         size: 32.0,
@@ -138,9 +136,9 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   text: 'Vous avez déjà un compte ? ',
                   style: TextStyle(
                     color: Colors.black,

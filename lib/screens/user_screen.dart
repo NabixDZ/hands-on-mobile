@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:iwd23/widgets/postcard_widget.dart';
 
@@ -19,7 +17,7 @@ class _UserScreenState extends State<UserScreen> {
           Stack(children: [
             Container(
               height: 130,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("images/Rectangle 6.png"),
                   fit: BoxFit.cover,
@@ -28,7 +26,7 @@ class _UserScreenState extends State<UserScreen> {
             ),
             Container(
               alignment: Alignment.bottomCenter,
-              child: FractionalTranslation(
+              child: const FractionalTranslation(
                 translation: Offset(0.0, 0.5),
                 child: CircleAvatar(
                   backgroundImage: AssetImage('images/Ellipse 38.png'),
@@ -37,12 +35,12 @@ class _UserScreenState extends State<UserScreen> {
               ),
             ),
           ]),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          Text("Username",
+          const Text("Username",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-          Container(
+          SizedBox(
             height: 20,
             width: 48,
             child: Row(children: [
@@ -50,11 +48,11 @@ class _UserScreenState extends State<UserScreen> {
               //   width: 6,
               // ),
               Image.asset("images/points.png"),
-              SizedBox(
+              const SizedBox(
                 width: 3,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(3, 0, 0, 3),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(3, 0, 0, 3),
                 child: Text(
                   "300",
                   style: TextStyle(
@@ -65,10 +63,10 @@ class _UserScreenState extends State<UserScreen> {
               ),
             ]),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+            children: const [
               Expanded(
                 child: Text(
                   '12\nPosts',
@@ -91,20 +89,20 @@ class _UserScreenState extends State<UserScreen> {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextButton(
               style: ElevatedButton.styleFrom(
-                  fixedSize: Size(100, 40), backgroundColor: Colors.white),
+                  fixedSize: const Size(100, 40), backgroundColor: Colors.white),
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "Follow",
                 style: TextStyle(color: Colors.black),
               )),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          PostCard(),
-          PostCard(),
+          const PostCard(),
+          const PostCard(),
         ]),
       ]),
     );

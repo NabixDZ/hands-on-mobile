@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class RecentEvent extends StatelessWidget {
   const RecentEvent({super.key});
@@ -9,22 +7,22 @@ class RecentEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Row(children: [
-        Image(
+        const Image(
           image: AssetImage("lib/assets/images/seisme.png"),
         ),
         Column(
           children: [
-            Text(
+            const Text(
               "Earthquake disaster",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Text(
+            const Text(
               "Japan marks 12 years since tsunami and nuclear disaster, Japan has marked ...",
               style: TextStyle(color: Colors.grey, fontSize: 10),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
-              children: [
+              children: const [
                 Text(
                   "@association-name",
                   style: TextStyle(fontSize: 9.5),

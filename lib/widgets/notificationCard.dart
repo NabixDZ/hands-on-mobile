@@ -13,9 +13,9 @@ class NotificationCard extends StatelessWidget {
         children: [
           ListTile(
                     leading: Image.asset("assets/images/profile.png"),
-                    title: Text("User name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-                    subtitle: Text("Agency name ajouter un nouveau poste",style:TextStyle(fontSize: 14) ,),
-                    trailing: Text("09:15 am",style:TextStyle(fontSize: 12) ),
+                    title: const Text("User name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
+                    subtitle: const Text("Agency name ajouter un nouveau poste",style:TextStyle(fontSize: 14) ,),
+                    trailing: const Text("09:15 am",style:TextStyle(fontSize: 12) ),
                   ),
                   Container(
                     color: Colors.black,

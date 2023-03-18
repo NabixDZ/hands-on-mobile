@@ -7,41 +7,41 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   TextEditingController _searchController = TextEditingController();
-  bool _isSearching = false;
+  bool _isSearching = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 241, 236, 233),
-        borderRadius: BorderRadius.circular(100)
-      ),
+          color: Color.fromARGB(255, 241, 236, 233),
+          borderRadius: BorderRadius.circular(100)),
       child: ListTile(
-       
-       
         leading: _isSearching
             ? IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(Icons.search),
                 onPressed: () {
-                  setState(() {
-                    _isSearching = false;
-                    _searchController.clear();
-                  });
+                  // setState(() {
+                  //   _isSearching = false;
+                  //   _searchController.clear();
+                  // });
                 },
               )
             : IconButton(
-                icon: Icon(Icons.search,color: Color.fromARGB(255, 143, 138, 135),),
+                icon: Icon(
+                  Icons.search,
+                  color: Color.fromARGB(255, 143, 138, 135),
+                ),
                 onPressed: () {
-                  setState(() {
-                    _isSearching = true;
-                  });
+                  // setState(() {
+                  //   _isSearching = true;
+                  // });
                 },
               ),
         title: _isSearching
             ? TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: 'Recherche...',
+                  hintText: 'Search',
                   border: InputBorder.none,
                 ),
                 onChanged: (value) {
@@ -49,10 +49,9 @@ class _SearchBarState extends State<SearchBar> {
                 },
               )
             : Text('Search'),
-            trailing:Container(
-              child: Image.asset("assets/images/Filter.png"),
-            ),
-       
+        trailing: Container(
+          child: Image.asset("assets/images/Filter.png"),
+        ),
       ),
     );
   }

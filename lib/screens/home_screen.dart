@@ -91,13 +91,16 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 "Help and earn points with",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
-                " App Name",
+                "HELPY",
                 style: TextStyle(
                     fontSize: 24,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 255, 42, 0)),
               ),
               SizedBox(
@@ -109,21 +112,20 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 "Your friend participated in:",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 15,
               ),
               GridView(
-                physics: NeverScrollableScrollPhysics(),
+                  physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisExtent: 220,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 0,
-                    crossAxisCount: 2,
-                    childAspectRatio: 3/4
-                  ),
+                      mainAxisExtent: 220,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 0,
+                      crossAxisCount: 2,
+                      childAspectRatio: 3 / 4),
                   children: [
                     PostHome(
                       title: "Beach cleaning",
@@ -161,29 +163,71 @@ class HomeScreen extends StatelessWidget {
               ),
             ]),
           ),
-         HomeEventCard(url: "assets/images/HomeBig.png", title: "Are you ready to join our newts event", desc: "By recycling you used plastic bottle or back you can bring a big difference  in the plastic wast "),
-         Padding(
-           padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
-           child: Text("Protecting Our Planet Starts with You",style:  TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
-         ),
-         SizedBox(height: 15,),
-         AdviceCard(url:"assets/images/icon.png", title:"Reduce, reuse, and recycle", desc:"Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",),
-         SizedBox(height: 15,),
-         AdviceCard(url:"assets/images/icon.png", title:"Reduce, reuse, and recycle", desc:"Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",),
-         SizedBox(height: 15,),
-         AdviceCard(url:"assets/images/icon.png", title:"Reduce, reuse, and recycle", desc:"Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",),
-         SizedBox(height: 15,),
-         AdviceCard(url:"assets/images/icon.png", title:"Reduce, reuse, and recycle", desc:"Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",),
-         Padding(
-           padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
-           child: Text("And what about some challenges?",style:  TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
-         ),
-         SizedBox(height: 15,),
-         ChallengeCard(title: "Challenge Title", url: "assets/images/post.png"),
-         SizedBox(height: 150,),
+          HomeEventCard(
+              url: "assets/images/HomeBig.png",
+              title: "Are you ready to join our newts event",
+              desc:
+                  "By recycling you used plastic bottle or back you can bring a big difference  in the plastic wast "),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+            child: Text(
+              "Protecting Our Planet Starts with You",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          AdviceCard(
+            url: "assets/images/icon.png",
+            title: "Reduce, reuse, and recycle",
+            desc:
+                "Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          AdviceCard(
+            url: "assets/images/icon.png",
+            title: "Reduce, reuse, and recycle",
+            desc:
+                "Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          AdviceCard(
+            url: "assets/images/icon.png",
+            title: "Reduce, reuse, and recycle",
+            desc:
+                "Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          AdviceCard(
+            url: "assets/images/icon.png",
+            title: "Reduce, reuse, and recycle",
+            desc:
+                "Cut down on what you throw away. Follow the three \"R's\"to conserve natural resources and landfill space.",
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+            child: Text(
+              "And what about some challenges?",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          ChallengeCard(
+              title: "Challenge Title", url: "assets/images/post.png"),
+          SizedBox(
+            height: 150,
+          ),
         ],
       ),
-      
     );
   }
 }

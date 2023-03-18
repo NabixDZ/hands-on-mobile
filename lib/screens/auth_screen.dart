@@ -47,7 +47,7 @@ class _AuthScreenState extends State<AuthScreen> {
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  text: "By continuing, I agree to the ",
+                  text: "By continuing, you agree to the ",
                   style: TextStyle(
                     color: Colors.grey,
                   ),
@@ -66,7 +66,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 onPressed: () {},
                 icon: Image.asset("images/googleicone-removebg-preview.png",
                     height: 24.0),
-                label: Text('Continuer avec Google'),
+                label: Text('Continue with Google'),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.black,
                     onPrimary: Colors.white,

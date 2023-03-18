@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iwd23/screens/publicationPage.dart';
 import 'package:provider/provider.dart';
 
 import '../myProvider.dart';
@@ -33,7 +34,10 @@ class _LayoutScreenState extends State<LayoutScreen> {
         body: screens[context.read<MyProvider>().index],
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 255, 42, 0),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => PublicationPage()));
+          },
           child: Icon(Icons.add),
         ),
         bottomNavigationBar: Container(

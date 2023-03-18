@@ -163,6 +163,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 55.0,
                           height: 55.0,
                           decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1,
+                              ),
                               color: Colors.grey[100],
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(8.0)),
@@ -217,40 +221,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)))),
-                // FutureBuilder(
-                //     future: getUser(),
-                //     builder: (context, snapshot) {
-                //       if (snapshot.hasData) {
-                //         List<User>? users = snapshot.data;
-                //         return TextButton(
-                //           onPressed: () async {
-                //             if (users!.contains(emailController.text)) {
-                //               if (passwordController.text ==users![0].password) {
-                //                 Navigator.pushReplacement(
-                //                     context,
-                //                     MaterialPageRoute(
-                //                         builder: (_) => LayoutScreen()));
-                //               }
-                //             }
-                //           },
-                //           child: const Text("Continue"),
-                //           style: TextButton.styleFrom(
-                //               fixedSize: const Size(300, 50),
-                //               primary: Colors.white,
-                //               backgroundColor: Colors.red,
-                //               shape: RoundedRectangleBorder(
-                //                   borderRadius: BorderRadius.circular(10.0))),
-                //         );
-                //       } else {
-                //         return TextButton(onPressed: (){}, child: const Text("Continue"),
-                //           style: TextButton.styleFrom(
-                //               fixedSize: const Size(300, 50),
-                //               primary: Colors.white,
-                //               backgroundColor: Colors.red,
-                //               shape: RoundedRectangleBorder(
-                //                   borderRadius: BorderRadius.circular(10.0))), );
-                //       }
-                //     }),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(

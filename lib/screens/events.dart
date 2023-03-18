@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iwd23/widgets/eventcard_widget.dart';
 import 'package:iwd23/widgets/recentEvent.dart';
 
 class EventPage extends StatelessWidget {
@@ -6,12 +7,37 @@ class EventPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Column(children: [
-        RecentEvent(),
-        RecentEvent(),
-      ]),
-    ));
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Scaffold(
+          body: ListView(children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          SizedBox(
+            height: 30,
+          ),
+          Text(
+            "Recently added:",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                RecentEvent(),
+                RecentEvent(),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            'Check more...',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+          ),
+          SizedBox(height: 10),
+          EventCard(),
+          EventCard(),
+        ]),
+      ])),
+    );
   }
 }

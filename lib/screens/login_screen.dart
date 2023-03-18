@@ -1,10 +1,18 @@
+// ignore_for_file: unrelated_type_equality_checks
+
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:http/http.dart' as http;
 
+import '../models/user.dart';
 import 'home_screen.dart';
 import 'signin_screen.dart';
+
+const uri = "http://192.168.43.43:5000";
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,7 +23,24 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    Future<List<User>> getUser() async {
+      try {
+        final res = await http.get(
+          Uri.parse("$uri/api/events/all"),
+        );
+
+        final user = jsonDecode(res.body) as List;
+        print(user);
+        return user.map((e) => User.fromMap(e)).toList();
+      } catch (e) {
+        print(e);
+        return [];
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -57,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: TextField(
+                    controller: emailController,
                     //obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'Email',
@@ -81,6 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: TextField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'password',
@@ -178,19 +205,40 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 70),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => HomeScreen()));
-                  },
-                  child: const Text("Continue"),
-                  style: TextButton.styleFrom(
-                      fixedSize: const Size(300, 50),
-                      primary: Colors.white,
-                      backgroundColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0))),
-                ),
+                FutureBuilder(
+                    future: getUser(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        List<User>? users = snapshot.data;
+                        return TextButton(
+                          onPressed: () async {
+                            if (users!.contains(emailController.text)) {
+                              if (passwordController.text ==users![0].password) {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => HomeScreen()));
+                              }
+                            }
+                          },
+                          child: const Text("Continue"),
+                          style: TextButton.styleFrom(
+                              fixedSize: const Size(300, 50),
+                              primary: Colors.white,
+                              backgroundColor: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0))),
+                        );
+                      } else {
+                        return TextButton(onPressed: (){}, child: const Text("Continue"),
+                          style: TextButton.styleFrom(
+                              fixedSize: const Size(300, 50),
+                              primary: Colors.white,
+                              backgroundColor: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0))), );
+                      }
+                    }),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(

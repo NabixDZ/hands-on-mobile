@@ -1,8 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/material.dart';
-import 'package:iwd23/screens/login_screen.dart';
+import 'package:http/http.dart' as http;
+
+import '../models/user.dart';
+import 'home_screen.dart';
+import 'login_screen.dart';
+
+const uri = "http://192.168.43.43:5000";
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -14,6 +22,33 @@ class SigninScreen extends StatefulWidget {
 class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController fullNameController = TextEditingController();
+
+    Future<User> postUser(
+        String email, String password, String fullName) async {
+      print(email);
+      print(password);
+      final res = await http.post(
+          Uri.parse(
+            "$uri/api/events/all",
+          ),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'email': email,
+            'password': password,
+            'fullname': fullName,
+          }));
+      if (res.statusCode == 201) {
+        return User.fromJson(jsonDecode(res.body));
+      } else {
+        throw Exception('Failed to create album.');
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -47,6 +82,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: TextField(
+                    controller: fullNameController,
                     //obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'Full name',
@@ -192,15 +228,27 @@ class _SigninScreenState extends State<SigninScreen> {
                   ],
                 ),
                 const SizedBox(height: 70),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("Continue"),
-                  style: TextButton.styleFrom(
-                      fixedSize: const Size(300, 50),
-                      primary: Colors.white,
-                      backgroundColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0))),
+                Builder(
+                  builder: (context) {
+                    return TextButton(
+                      onPressed: () {
+                        setState(() {
+                          postUser(emailController.text, passwordController.text,
+                                fullNameController.text);
+                        });
+                        
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (_) => HomeScreen()));
+                      },
+                      child: const Text("Continue"),
+                      style: TextButton.styleFrom(
+                          fixedSize: const Size(300, 50),
+                          primary: Colors.white,
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0))),
+                    );
+                  }
                 ),
                 const SizedBox(height: 30),
                 RichText(

@@ -1,22 +1,43 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
+import 'package:iwd23/models/event.dart';
 import 'package:iwd23/screens/HomePage/widgets/adviceCard.dart';
 import 'package:iwd23/screens/HomePage/widgets/challengCard.dart';
 import 'package:iwd23/screens/HomePage/widgets/homeEvents.dart';
 import 'package:iwd23/screens/HomePage/widgets/postHome.dart';
 import 'package:iwd23/screens/HomePage/widgets/searchbar.dart';
-
+const uri = "http://192.168.43.43:5000";
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  Future<List<Event>> getEvent()async{
+       try {
+                final res = await http.get(Uri.parse("$uri/api/events/all") , 
+              
+                
+                );
+
+                final events = jsonDecode(res.body) as List ; 
+                print(events);
+                return events.map((e) => Event.fromMap(e)).toList();
+
+       } catch (e) {
+        print(e);
+        return [];
+         
+       }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
+    return ListView(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -114,38 +135,40 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              GridView(
-                physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisExtent: 220,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 0,
-                    crossAxisCount: 2,
-                    childAspectRatio: 3/4
-                  ),
-                  children: [
-                    PostHome(
-                      title: "Beach cleaning",
-                      url: "assets/images/post.png",
-                      user_name: "@userName",
-                    ),
-                    PostHome2(
-                      title: "Beach cleaning",
-                      url: "assets/images/post2.png",
-                      user_name: "@userName",
-                    ),
-                    PostHome(
-                      title: "Beach cleaning",
-                      url: "assets/images/post2.png",
-                      user_name: "@userName",
-                    ),
-                    PostHome2(
-                      title: "Beach cleaning",
-                      url: "assets/images/post.png",
-                      user_name: "@userName",
-                    ),
-                  ]),
+
+              FutureBuilder(
+                future: getEvent(),
+                builder: (context, snapshot)  {
+                if(snapshot.hasData) {
+                  List<Event>? events = snapshot.data;
+                  if(events != null) {
+                    return GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 300,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 0,
+                        crossAxisCount: 2,
+                        childAspectRatio: 3/4
+                      ),
+                      itemCount: events.length,
+                      itemBuilder: ((context, index) => PostHome(userName: "userName", event: events[index])),
+                        
+                      );
+
+                  }
+                   return Text('Error');
+                  
+                }
+              
+                else{
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+
+                }
+              },),
               Align(
                   alignment: Alignment.center,
                   child: Text("See more",
@@ -182,8 +205,8 @@ class HomeScreen extends StatelessWidget {
          ChallengeCard(title: "Challenge Title", url: "assets/images/post.png"),
          SizedBox(height: 150,),
         ],
-      ),
+      )
       
-    );
+    ;
   }
 }

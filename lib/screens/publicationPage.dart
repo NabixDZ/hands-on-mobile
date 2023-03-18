@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ReportPage extends StatelessWidget {
-  const ReportPage({super.key});
+class PublicationPage extends StatelessWidget {
+  const PublicationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class ReportPage extends StatelessWidget {
                 height: 50,
               ),
               Text(
-                "Report garbage",
+                "Add a new post",
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 32),
               ),
               SizedBox(
                 height: 50,
               ),
               Text(
-                "Where",
+                "Title",
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
               ),
               TextField(
@@ -40,18 +40,9 @@ class ReportPage extends StatelessWidget {
               SizedBox(
                 height: 50,
               ),
-              Text("Description",
+              Text("Select your event",
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
-              TextField(
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                ),
-              ),
+              DropdownButton(items: [], onChanged: null),
               SizedBox(
                 height: 50,
               ),

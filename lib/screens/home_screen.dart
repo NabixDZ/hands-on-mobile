@@ -6,11 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:iwd23/models/event.dart';
+import 'package:iwd23/myProvider.dart';
 import 'package:iwd23/screens/HomePage/widgets/adviceCard.dart';
 import 'package:iwd23/screens/HomePage/widgets/challengCard.dart';
 import 'package:iwd23/screens/HomePage/widgets/homeEvents.dart';
 import 'package:iwd23/screens/HomePage/widgets/postHome.dart';
 import 'package:iwd23/screens/HomePage/widgets/searchbar.dart';
+import 'package:iwd23/screens/events.dart';
+import 'package:iwd23/screens/notificationPage.dart';
+import 'package:iwd23/screens/profile_screen.dart';
+import 'package:provider/provider.dart';
 
 const uri = "http://192.168.43.43:5000";
 
@@ -52,8 +57,15 @@ class HomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8)),
                         height: 44,
                         width: 44,
-                        child: Image.asset(
-                          "assets/images/profile.png",
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfileScreen()),
+                            );
+                          },
+                          child: Image.asset("assets/images/profile.png"),
                         ),
                       ),
                       SizedBox(
@@ -90,7 +102,13 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationPage()),
+                      );
+                    },
                     child: SvgPicture.asset("assets/images/notification.svg"),
                   ),
                 ],
@@ -115,7 +133,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "HELPY",
+              "HANDS-ON",
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -164,10 +182,14 @@ class HomeScreen extends StatelessWidget {
               },
             ),
             Align(
-                alignment: Alignment.center,
-                child: Text("See more",
-                    style: TextStyle(
-                        fontSize: 16, color: Color.fromARGB(255, 255, 42, 0)))),
+              alignment: Alignment.center,
+              child: GestureDetector(
+                  onTap: () {},
+                  child: Text('See more',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 255, 42, 0)))),
+            ),
             SizedBox(
               height: 15,
             ),
@@ -179,7 +201,7 @@ class HomeScreen extends StatelessWidget {
         ),
         HomeEventCard(
             url: "assets/images/HomeBig.png",
-            title: "Are you ready to join our newts event",
+            title: "Are you ready to join our newest event",
             desc:
                 "By recycling you used plastic bottle or back you can bring a big difference  in the plastic wast "),
         Padding(

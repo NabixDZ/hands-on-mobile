@@ -228,28 +228,26 @@ class _SigninScreenState extends State<SigninScreen> {
                   ],
                 ),
                 const SizedBox(height: 70),
-                Builder(
-                  builder: (context) {
-                    return TextButton(
-                      onPressed: () {
-                        // setState(() {
-                        //   postUser(emailController.text, passwordController.text,
-                        //         fullNameController.text);
-                        // });
-                        
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (_) => LayoutScreen()));
-                      },
-                      child: const Text("Continue"),
-                      style: TextButton.styleFrom(
-                          fixedSize: const Size(300, 50),
-                          primary: Colors.white,
-                          backgroundColor: Colors.red,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0))),
-                    );
-                  }
-                ),
+                Builder(builder: (context) {
+                  return TextButton(
+                    onPressed: () {
+                      // setState(() {
+                      //   postUser(emailController.text, passwordController.text,
+                      //         fullNameController.text);
+                      // });
+
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => LayoutScreen()));
+                    },
+                    child: const Text("Continue"),
+                    style: TextButton.styleFrom(
+                        fixedSize: const Size(300, 50),
+                        primary: Colors.white,
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0))),
+                  );
+                }),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(

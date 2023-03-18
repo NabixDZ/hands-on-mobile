@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
+import 'package:iwd23/screens/Layout.dart';
 
 import '../models/user.dart';
-import 'home_screen.dart';
 import 'signin_screen.dart';
 
 const uri = "http://192.168.43.43:5000";
@@ -205,44 +205,52 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 70),
-                FutureBuilder(
-                    future: getUser(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        List? users = snapshot.data;
-                        return TextButton(
-                          onPressed: () async {
-                            if (users!.contains(emailController.text)) {
-                              if (passwordController.text ==
-                                  users![0].password) {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => HomeScreen()));
-                              }
-                            }
-                          },
-                          child: const Text("Continue"),
-                          style: TextButton.styleFrom(
-                              fixedSize: const Size(300, 50),
-                              primary: Colors.white,
-                              backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0))),
-                        );
-                      } else {
-                        return TextButton(
-                          onPressed: () {},
-                          child: const Text("Continue"),
-                          style: TextButton.styleFrom(
-                              fixedSize: const Size(300, 50),
-                              primary: Colors.white,
-                              backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0))),
-                        );
-                      }
-                    }),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => LayoutScreen()));
+                    },
+                    child: const Text("Continue"),
+                    style: TextButton.styleFrom(
+                        fixedSize: const Size(300, 50),
+                        primary: Colors.white,
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)))),
+                // FutureBuilder(
+                //     future: getUser(),
+                //     builder: (context, snapshot) {
+                //       if (snapshot.hasData) {
+                //         List<User>? users = snapshot.data;
+                //         return TextButton(
+                //           onPressed: () async {
+                //             if (users!.contains(emailController.text)) {
+                //               if (passwordController.text ==users![0].password) {
+                //                 Navigator.pushReplacement(
+                //                     context,
+                //                     MaterialPageRoute(
+                //                         builder: (_) => LayoutScreen()));
+                //               }
+                //             }
+                //           },
+                //           child: const Text("Continue"),
+                //           style: TextButton.styleFrom(
+                //               fixedSize: const Size(300, 50),
+                //               primary: Colors.white,
+                //               backgroundColor: Colors.red,
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(10.0))),
+                //         );
+                //       } else {
+                //         return TextButton(onPressed: (){}, child: const Text("Continue"),
+                //           style: TextButton.styleFrom(
+                //               fixedSize: const Size(300, 50),
+                //               primary: Colors.white,
+                //               backgroundColor: Colors.red,
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(10.0))), );
+                //       }
+                //     }),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(

@@ -7,7 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/user.dart';
-import 'home_screen.dart';
+import 'Layout.dart';
 import 'login_screen.dart';
 
 const uri = "http://192.168.43.43:5000";
@@ -232,13 +232,13 @@ class _SigninScreenState extends State<SigninScreen> {
                   builder: (context) {
                     return TextButton(
                       onPressed: () {
-                        setState(() {
-                          postUser(emailController.text, passwordController.text,
-                                fullNameController.text);
-                        });
+                        // setState(() {
+                        //   postUser(emailController.text, passwordController.text,
+                        //         fullNameController.text);
+                        // });
                         
                             Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (_) => HomeScreen()));
+                                MaterialPageRoute(builder: (_) => LayoutScreen()));
                       },
                       child: const Text("Continue"),
                       style: TextButton.styleFrom(

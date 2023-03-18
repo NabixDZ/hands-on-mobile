@@ -20,11 +20,11 @@ class NotificationPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back_ios,
                       color: Colors.black,
                     ),
-                    label: Text("")),
+                    label: const Text("")),
                 Image.asset(
                   "assets/images/profile.png",
                   height: 44,
@@ -32,19 +32,19 @@ class NotificationPage extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Text(
+            const Text(
               "Notification",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            NotificationCard(),
-            NotificationCard(),
-            NotificationCard(),
+            const NotificationCard(),
+            const NotificationCard(),
+            const NotificationCard(),
            
           ],
         ),

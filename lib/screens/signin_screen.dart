@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
+import 'package:iwd23/salah/core/utils/validators.dart';
+import 'package:iwd23/salah/data/requests/requests.dart';
+import 'package:provider/provider.dart';
 
 import '../models/user.dart';
+import '../salah/viewmodels/register_viewmodel.dart';
 import 'Layout.dart';
 import 'login_screen.dart';
 
@@ -25,6 +27,8 @@ class _SigninScreenState extends State<SigninScreen> {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController fullNameController = TextEditingController();
+
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     Future<User> postUser(
         String email, String password, String fullName) async {
@@ -61,7 +65,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                   child: RichText(
                     textAlign: TextAlign.left,
-                    text: TextSpan(
+                    text: const TextSpan(
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -78,79 +82,96 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 60),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: TextField(
-                    controller: fullNameController,
-                    //obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Full name',
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      fillColor: Colors.grey[100],
-                      filled: true,
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.person),
-                        onPressed: () {
-                          // action à effectuer lors du clic sur l'icône
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 18),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: TextField(
-                    //obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      fillColor: Colors.grey[100],
-                      filled: true,
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.mail),
-                        onPressed: () {
-                          // action à effectuer lors du clic sur l'icône
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 18),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'password',
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      fillColor: Colors.grey[100],
-                      filled: true,
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.password),
-                        onPressed: () {
-                          // action à effectuer lors du clic sur l'icône
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 60),
+              
+                
+               Form(
+                 key: formKey,
+                 child:  Column(
+                   children: [
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                       child: TextFormField(
+                         validator: Validator.nameValidator,
+                         controller: fullNameController,
+                         //obscureText: true,
+                         decoration: InputDecoration(
+                           hintText: 'Full name',
+                           enabledBorder: const OutlineInputBorder(
+                             borderSide: BorderSide(color: Colors.grey),
+                           ),
+                           focusedBorder: const OutlineInputBorder(
+                             borderSide: BorderSide(color: Colors.red),
+                           ),
+                           fillColor: Colors.grey[100],
+                           filled: true,
+                           prefixIcon: IconButton(
+                             icon: const Icon(Icons.person),
+                             onPressed: () {
+                               // action à effectuer lors du clic sur l'icône
+                             },
+                           ),
+                         ),
+                       ),
+                     ),
+                     const SizedBox(height: 18),
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                       child: TextFormField(
+                         controller: emailController,
+                         validator: Validator.emailValidator,
+                         //obscureText: true,
+                         decoration: InputDecoration(
+                           hintText: 'Email',
+                           enabledBorder: const OutlineInputBorder(
+                             borderSide: BorderSide(color: Colors.grey),
+                           ),
+                           focusedBorder: const OutlineInputBorder(
+                             borderSide: BorderSide(color: Colors.red),
+                           ),
+                           fillColor: Colors.grey[100],
+                           filled: true,
+                           prefixIcon: IconButton(
+                             icon: const Icon(Icons.mail),
+                             onPressed: () {
+                               // action à effectuer lors du clic sur l'icône
+                             },
+                           ),
+                         ),
+                       ),
+                     ),
+                     const SizedBox(height: 18),
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                       child: TextFormField(
+                         controller: passwordController,
+                         validator: Validator.passwordlValidator,
+                         obscureText: true,
+                         decoration: InputDecoration(
+                           hintText: 'password',
+                           enabledBorder: const OutlineInputBorder(
+                             borderSide: BorderSide(color: Colors.grey),
+                           ),
+                           focusedBorder: const OutlineInputBorder(
+                             borderSide: BorderSide(color: Colors.red),
+                           ),
+                           fillColor: Colors.grey[100],
+                           filled: true,
+                           prefixIcon: IconButton(
+                             icon: const Icon(Icons.password),
+                             onPressed: () {
+                               // action à effectuer lors du clic sur l'icône
+                             },
+                           ),
+                         ),
+                       ),
+                     ),
+
+                   ],
+                 ),
+               ),
+                
+                
                 const SizedBox(height: 41),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -236,16 +257,25 @@ class _SigninScreenState extends State<SigninScreen> {
                       //         fullNameController.text);
                       // });
 
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => LayoutScreen()));
+                      if (formKey.currentState!.validate()) {
+                        Provider.of<RegisterViewModel>(context, listen: false)
+                            .register(
+                            RegisterRequest(
+                              emailController.text.trim(),
+                              fullNameController.text.trim(),
+                              passwordController.text.trim(),
+                            ),
+                            context);
+                      }
+
+
                     },
-                    child: const Text("Continue"),
                     style: TextButton.styleFrom(
-                        fixedSize: const Size(300, 50),
-                        primary: Colors.white,
+                        foregroundColor: Colors.white, fixedSize: const Size(300, 50),
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0))),
+                    child: const Text("Continue"),
                   );
                 }),
                 const SizedBox(height: 30),

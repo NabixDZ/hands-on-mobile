@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iwd23/screens/auth_screen.dart';
-import 'package:iwd23/screens/pageView/p4_view.dart';
 
 class P3View extends StatelessWidget {
   const P3View({super.key});
@@ -13,7 +12,7 @@ class P3View extends StatelessWidget {
           height: 20,
         ),
         Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: SizedBox(
             height: 50,
             child: Align(
@@ -22,10 +21,10 @@ class P3View extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AuthScreen()),
+                      MaterialPageRoute(builder: (context) => const AuthScreen()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     "Skip",
                     style: TextStyle(
                       color: Color.fromARGB(255, 180, 180, 180),

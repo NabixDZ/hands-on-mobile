@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iwd23/screens/publicationPage.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +11,7 @@ import 'reportPage.dart';
 import 'roadMap.dart';
 
 class LayoutScreen extends StatefulWidget {
-  LayoutScreen({super.key});
+  const LayoutScreen({super.key});
 
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
@@ -21,11 +19,11 @@ class LayoutScreen extends StatefulWidget {
 
 class _LayoutScreenState extends State<LayoutScreen> {
   List screens = [
-    HomeScreen(),
-    ReportPage(),
-    EventPage(),
-    Feed(),
-    RoadMapPage()
+    const HomeScreen(),
+    const ReportPage(),
+    const EventPage(),
+    const Feed(),
+    const RoadMapPage()
   ];
 
   @override
@@ -33,16 +31,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
     return Scaffold(
         body: screens[context.read<MyProvider>().index],
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 255, 42, 0),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => PublicationPage()));
-          },
-          child: Icon(Icons.add),
+          backgroundColor: const Color.fromARGB(255, 255, 42, 0),
+          onPressed: () {},
+          child: const Icon(Icons.add),
         ),
         bottomNavigationBar: Container(
           height: 70,
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -57,7 +52,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                   height: 35,
                   width: 35,
                   color: context.read<MyProvider>().index == 0
-                      ? Color.fromARGB(255, 255, 42, 0)
+                      ? const Color.fromARGB(255, 255, 42, 0)
                       : Colors.black,
                 ),
               ),
@@ -72,7 +67,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     height: 35,
                     width: 35,
                     color: context.read<MyProvider>().index == 1
-                        ? Color.fromARGB(255, 255, 42, 0)
+                        ? const Color.fromARGB(255, 255, 42, 0)
                         : Colors.black,
                   )),
               GestureDetector(
@@ -86,7 +81,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     height: 35,
                     width: 35,
                     color: context.read<MyProvider>().index == 2
-                        ? Color.fromARGB(255, 255, 42, 0)
+                        ? const Color.fromARGB(255, 255, 42, 0)
                         : Colors.black,
                   )),
               GestureDetector(
@@ -100,7 +95,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     height: 35,
                     width: 35,
                     color: context.read<MyProvider>().index == 3
-                        ? Color.fromARGB(255, 255, 42, 0)
+                        ? const Color.fromARGB(255, 255, 42, 0)
                         : Colors.black,
                   )),
               GestureDetector(
@@ -114,7 +109,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     height: 35,
                     width: 35,
                     color: context.read<MyProvider>().index == 4
-                        ? Color.fromARGB(255, 255, 42, 0)
+                        ? const Color.fromARGB(255, 255, 42, 0)
                         : Colors.black,
                   )),
             ],

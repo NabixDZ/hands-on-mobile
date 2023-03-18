@@ -2,14 +2,17 @@
 
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
+import 'package:iwd23/salah/data/requests/requests.dart';
+import 'package:iwd23/salah/viewmodels/login_viewmodel.dart';
 import 'package:iwd23/screens/Layout.dart';
+import 'package:provider/provider.dart';
 
 import '../models/user.dart';
+import '../salah/core/utils/validators.dart';
 import 'signin_screen.dart';
 
 const uri = "http://192.168.43.43:5000";
@@ -22,6 +25,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
@@ -79,55 +84,65 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 100),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: TextField(
-                    controller: emailController,
-                    //obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      fillColor: Colors.grey[100],
-                      filled: true,
-                      prefixIcon: IconButton(
-                        icon: const Icon(Icons.mail),
-                        onPressed: () {
-                          // action à effectuer lors du clic sur l'icône
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 18),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'password',
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      fillColor: Colors.grey[100],
-                      filled: true,
-                      prefixIcon: IconButton(
-                        icon: const Icon(Icons.password),
-                        onPressed: () {
-                          // action à effectuer lors du clic sur l'icône
-                        },
+              Form(
+                key: formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: TextFormField(
+                        validator: Validator.emailValidator,
+                        controller: emailController,
+                        //obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: 'Email',
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                          ),
+                          fillColor: Colors.grey[100],
+                          filled: true,
+                          prefixIcon: IconButton(
+                            icon: const Icon(Icons.mail),
+                            onPressed: () {
+                              // action à effectuer lors du clic sur l'icône
+                            },
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 18),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: TextFormField(
+                        validator: Validator.passwordlValidator,
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: 'password',
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                          ),
+                          fillColor: Colors.grey[100],
+                          filled: true,
+                          prefixIcon: IconButton(
+                            icon: const Icon(Icons.password),
+                            onPressed: () {
+                              // action à effectuer lors du clic sur l'icône
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+              ),
                 const SizedBox(height: 41),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -211,16 +226,57 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 70),
                 TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => LayoutScreen()));
+                      if (formKey.currentState!.validate()) {
+                        Provider.of<LoginViewModel>(context, listen: false)
+                            .login(
+                                LoginRequest(
+                                  emailController.text.trim(),
+                                  passwordController.text.trim(),
+                                ),
+                                context);
+                      }
                     },
-                    child: const Text("Continue"),
                     style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
                         fixedSize: const Size(300, 50),
-                        primary: Colors.white,
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)))),
+                            borderRadius: BorderRadius.circular(10.0))),
+                    child: const Text("Continue")),
+                // FutureBuilder(
+                //     future: getUser(),
+                //     builder: (context, snapshot) {
+                //       if (snapshot.hasData) {
+                //         List<User>? users = snapshot.data;
+                //         return TextButton(
+                //           onPressed: () async {
+                //             if (users!.contains(emailController.text)) {
+                //               if (passwordController.text ==users![0].password) {
+                //                 Navigator.pushReplacement(
+                //                     context,
+                //                     MaterialPageRoute(
+                //                         builder: (_) => LayoutScreen()));
+                //               }
+                //             }
+                //           },
+                //           child: const Text("Continue"),
+                //           style: TextButton.styleFrom(
+                //               fixedSize: const Size(300, 50),
+                //               primary: Colors.white,
+                //               backgroundColor: Colors.red,
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(10.0))),
+                //         );
+                //       } else {
+                //         return TextButton(onPressed: (){}, child: const Text("Continue"),
+                //           style: TextButton.styleFrom(
+                //               fixedSize: const Size(300, 50),
+                //               primary: Colors.white,
+                //               backgroundColor: Colors.red,
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(10.0))), );
+                //       }
+                //     }),
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../core/extensions/extensions.dart';
-import 'user_viewmodel.dart';
-import '../../screens/Layout.dart';
-import '../../screens/home_screen.dart';
+import 'package:iwd23/salah/core/extensions/extensions.dart';
+import 'package:iwd23/salah/viewmodels/user_viewmodel.dart';
+import 'package:iwd23/screens/Layout.dart';
+import 'package:iwd23/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../core/base/base_viewmodel.dart';
@@ -39,7 +39,7 @@ class LoginViewModel extends BaseViewModel {
 
         if(context.mounted){
           dismiss(context);
-          context.pushReplacement( LayoutScreen());
+          context.pushReplacement(const LayoutScreen());
         }
 
       },

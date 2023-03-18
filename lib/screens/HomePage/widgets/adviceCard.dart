@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 
 class AdviceCard extends StatelessWidget {
-   AdviceCard({super.key, required this.title, required this.url, required this.desc});
+   const AdviceCard({super.key, required this.title, required this.url, required this.desc});
   final String title,url,desc;
   @override
   Widget build(BuildContext context) {

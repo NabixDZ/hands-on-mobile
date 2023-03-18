@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:iwd23/models/event.dart';
 
-import '../../postPage/postPage.dart';
 
 class PostHome extends StatelessWidget {
   const PostHome({super.key, required this.userName, required this.event});

@@ -71,10 +71,10 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['fullname'] = this.fullname;
-    data['email'] = this.email;
-    data['password'] = this.password;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['fullname'] = fullname;
+    data['email'] = email;
+    data['password'] = password;
     return data;
   }
 

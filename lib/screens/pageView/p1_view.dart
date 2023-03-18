@@ -17,7 +17,7 @@ class P1View extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: Align(
                   alignment: Alignment.topRight,
@@ -40,14 +40,14 @@ class P1View extends StatelessWidget {
                   )),
             ),
           ),
-          Container(
+          SizedBox(
             height: 250,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset("assets/images/p1.png"),
             ),
           ),
-          Container(
+          SizedBox(
             height: 120,
             child: Column(
               children: [
@@ -61,7 +61,7 @@ class P1View extends StatelessWidget {
               ],
             ),
           ),
-          Container(
+          SizedBox(
               height: 70,
               width: 250,
               child: Expanded(

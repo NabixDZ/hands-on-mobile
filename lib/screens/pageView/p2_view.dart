@@ -10,12 +10,12 @@ class P2View extends StatelessWidget {
     return SafeArea(
       child: Container(
         child: Column(children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: Align(
                   alignment: Alignment.topRight,
@@ -23,10 +23,10 @@ class P2View extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AuthScreen()),
+                        MaterialPageRoute(builder: (context) => const AuthScreen()),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       "Skip",
                       style: TextStyle(
                         color: Color.fromARGB(255, 180, 180, 180),
@@ -38,7 +38,7 @@ class P2View extends StatelessWidget {
                   )),
             ),
           ),
-          Container(
+          SizedBox(
             height: 250,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -49,7 +49,7 @@ class P2View extends StatelessWidget {
             height: 120,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
                   "Help",
                   style: TextStyle(
@@ -62,19 +62,19 @@ class P2View extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
               height: 70,
               width: 250,
               child: Expanded(
                   child: Text(
                       textAlign: TextAlign.center,
                       "Earn points for every eco-friendly action you take and climb the ranks to win amazing rewards"))),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               CircleAvatar(
                 radius: 5,
                 backgroundColor: Color.fromARGB(255, 180, 180, 180),
@@ -102,17 +102,17 @@ class P2View extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  fixedSize: Size(300, 40),
-                  backgroundColor: Color.fromARGB(255, 255, 42, 0)),
+                  fixedSize: const Size(300, 40),
+                  backgroundColor: const Color.fromARGB(255, 255, 42, 0)),
               onPressed: () {
-                P3View();
+                const P3View();
               },
-              child: Text("Suivant")),
+              child: const Text("Suivant")),
         ]),
       ),
     );

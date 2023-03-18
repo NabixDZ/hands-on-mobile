@@ -10,14 +10,14 @@ final String title,url;
     return Container(
           height: 66,
           decoration: BoxDecoration( 
-            color: Color.fromARGB(255, 241, 245, 254),
+            color: const Color.fromARGB(255, 241, 245, 254),
             borderRadius: BorderRadius.circular(10)
             ),
          
-          margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
           child:Row(
           children: [
-            SizedBox(width: 10,),
+            const SizedBox(width: 10,),
             Image.asset(url,height: 44,width: 44,fit: BoxFit.fill,),
             Expanded(
               child: Padding(
@@ -28,9 +28,9 @@ final String title,url;
                     
                     Text(
                     title,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
-                    Text(
+                    const Text(
                     " Know more about it",
                     style: TextStyle(fontSize: 11, color: Color.fromARGB(255, 106, 106, 106)),
                     textAlign: TextAlign.left,
